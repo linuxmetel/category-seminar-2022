@@ -1,0 +1,86 @@
+\documentclass[landscape, twocolumn, column_gap=2zw, head_space=15mm, foot_space=15mm, font_size=5pt, jafontscale=0.9, line_length=40zw]{jlreq}
+
+\pagestyle{empty}
+%\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\emph}[1]{{upshape\bfseries #1}}
+
+\usepackage[no-math]{fontspec}
+\usepackage[haranoaji]{luatexja-preset}
+\usepackage{graphicx, xcolor}
+\usepackage{lualatex-math}
+\usepackage{amsthm}
+\usepackage{newpxtext, newpxmath}
+\usepackage{translator}
+
+\title{『圏論の基礎』読書会・配布プリント No.001 抽象代数学 (1)}
+\author{Linuxmetel}
+\date{2022年06月09日}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{thorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{example}[definition]{Example}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\begin{document}
+\twocolumn[%
+{\LARGE \textbf{『圏論の基礎』読書会・配布プリント No.001   抽象代数学（1）}} \\
+]
+
+
+ \section{モノイド・群・可換群}
+ \begin{definition}
+ $X$ を空でない集合， $\cdot\ : X \times X \rightarrow X$ をその二項演算とする. また $x, y, z \in X$ を任意にとる. （ $\cdot$ はしばしば省略される）
+  \begin{enumerate}
+   \item ある $1_X$ が存在して $1_Xx = x1_X=x$. （ $1_X$ を\textbf{単位元} (identity element) と呼ぶ，これは一意に定まる）
+   \item $(xy)z = x(yz)$.
+   \item $x^{-1}$ が存在して $xx^{-1} = x^{-1}x=1_X$. （ $x^{-1}$ を $x$ の\textbf{逆元} (inverse element) と呼ぶ，これは一意に定まる）
+   \item $xy = yx$.
+  \end{enumerate}
+
+  ここで (a) と (b) を満たす $\langle X, \ \cdot\ \rangle$ を\textbf{モノイド} (monoid) ， 更に (c) を満たす物を\textbf{群} (group) と呼ぶ. また (d) も満たす群を\textbf{可換群} (commutative group) 若しくは\textbf{アーベル群} (abelian group) と呼ぶ.（これは図式の可換とは違い，左右に関するもの）
+
+  (b) により結果は括弧の位置に依存しないので括弧は省略されることが多い. またモノイドは $M, N$ ，群は $G, H$ などで置くことが多い.
+ \end{definition}
+ 
+
+ \section{モノイド・群の準同型}
+ \begin{definition}
+  モノイド（若しくは群） $G_1, G_2$ に対し $ f : G_1 \rightarrow G_2$ が定義されるとき， $f$ が\textbf{準同型} (homomorphism) であるとは任意の $x, y ∈ G_1$ に対して $f(x)f(y)=f(xy)$ が成り立つことを言う. また $f$ が全単射であるときこれを\textbf{同型} (isomorphism)と言う. $G_1$ から $G_2$ への同型が存在するときに $G_1$ と $G_2$ は\textbf{同型} (isomorphic) ( $G_1 \cong G_2$ ) であると言う.
+ \end{definition}
+
+ \section{環・可換環・体・整域}
+ \begin{definition}
+  $X$ を空でない集合， $+,\ \cdot\ : X \times X \rightarrow X$ をその二項演算とする. また $x, y, z$ を任意にとる. (先程と同様に $\cdot$ はしばしば省略される)
+  \begin{enumerate}
+   \item $\langle X, +\rangle$ が可換群になっている. （この可換群の単位元を $1_X$ と書く，\textbf{零元} (zero element) などと呼ぶ）
+   \item $\langle X, \ \cdot\ \rangle$ がモノイドになっている.（このモノイドの単位元を $0_X$ と書く，環等で単位元はこれを指すことが多い）
+   \item $(x + y)z = xz + yz, x(y+z)=xy+xz$.
+   \item $1_X \neq 0_X$.
+   \item $xy = yx$.
+   \item $xy=0_X$ ならば $x=0_X$ 若しくは $y=0_X$.
+   \item $x \neq 0_X$ のとき，ある $x^{-1}$ が存在して $x^{-1}x = xx^{-1}=1_X$ （逆元などと呼ぶ，これは一意に定まる）
+  \end{enumerate}
+
+  (a)，(b)，(c)，(d) が成り立つ $\langle X, +, \ \cdot\ \rangle$ を\textbf{環} (ring) と呼ぶ. （(d) を定義に入れない流儀や，単位元の存在を仮定しない流儀もある）
+
+また，(e) が成り立つ環を\textbf{可換環} (commutative ring) と呼び, さらに (g) が成り立つものを \textbf{体} (field) と呼ぶ. また (e) を仮定しない場合は \textbf{斜体} (skew field) と呼ぶ（体の可換・非可換とその呼び方については複数の流儀が存在する）
+
+(f) が成り立つ可換環を\textbf{整域} (integral domain) と呼ぶ. これは体になっている. 環は $R$ 等で，体は $F$ などで置くことが多い.
+ \end{definition}
+
+ \section{環・体の準同型}
+ \begin{definition}
+  $R_1, R_2$ を環若しくは体とする. $f : R_1 \rightarrow R_2$ が任意の $x, y ∈ R_1$ に対して $f(x)f(y) = xy, f(x)+f(y)=f(x+y)$ を満たし，$f(1_{R_1}) = 1_{R_2}$ が成り立つとき， $f$ を $R_1$ から $R_2$ への準同型と呼ぶ. $f$ が全単射のとき先程と同様に同型と呼ぶ. $R_1$ から $R_2$ への同型が存在するときに $R_1$ と $R_2$ は同型 ( $R_1 \cong R_2$ ) という.
+ \end{definition}
+
+ \section{モノイド等の圏}
+\begin{definition}
+ モノイド全体を対象，準同型全体を射とすると圏が定まる. これをモノイドの圏と呼び $\mathbf{Mon}$ と書く. 同様に群の場合は $\mathbf{Grp}$，可換群の場合は $\mathbf{Ab}$，環の場合は $\mathbf{Rng}$，可換環の場合は $\mathbf{CRng}$，体の場合は $\mathbf{Fld}$ と書く.
+\end{definition}
+\end{document}
